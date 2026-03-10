@@ -1,3 +1,5 @@
+70808 Elite: The Natural Mass Companion
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +19,7 @@
         .status-badge { font-size: 0.6rem; font-weight: 900; padding: 0.2rem 0.6rem; border-radius: 9999px; text-transform: uppercase; }
         .cb-custom { width: 22px; height: 22px; border: 2px solid #10b981; border-radius: 6px; display: flex; align-items: center; justify-content: center; }
         .cb-custom.checked { background-color: #10b981; }
+
         .cb-custom.checked::after { content: '✓'; color: white; font-size: 12px; font-weight: bold; }
         .checkpoint-dot { width: 10px; height: 10px; border-radius: 50%; background: #10b981; border: 2px solid #020617; box-shadow: 0 0 8px #10b981; }
         .modal { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.95); backdrop-filter: blur(8px); }
@@ -36,6 +39,7 @@
             <p id="rep-display" class="text-2xl font-black text-white oswald">0</p>
         </div>
         <div class="card p-4 text-center">
+
             <p class="text-[8px] font-black text-slate-500 uppercase tracking-widest mb-1">Target</p>
             <p class="text-2xl font-black text-amber-500 oswald">3,200<span class="text-[10px] ml-1">KCAL</span></p>
         </div>
@@ -55,6 +59,7 @@
         <button onclick="navigate('setup')" id="nav-setup" class="tab-btn flex flex-col items-center gap-1">
             <i class="fa-solid fa-house-laptop text-lg"></i>
             <span class="text-[7px] font-black uppercase">Home</span>
+
         </button>
         <button onclick="navigate('groceries')" id="nav-groceries" class="tab-btn flex flex-col items-center gap-1">
             <i class="fa-solid fa-cart-shopping text-lg"></i>
@@ -74,6 +79,7 @@
             </div>
             <div id="modal-body" class="p-8 text-slate-300 text-xs leading-relaxed whitespace-pre-line italic"></div>
             <div class="p-6 pt-0"><button onclick="closeModal()" class="w-full py-4 bg-slate-800 rounded-2xl font-black text-white uppercase text-[10px]">GOT IT</button></div>
+
         </div>
     </div>
 
@@ -93,6 +99,7 @@
         const workoutDays = {
             1: { t: "UPPER (PUSH)", m: ["Pushups (Banded)", "Banded DB Curls"], r: "20-30" },
             2: { t: "LOWER (MASS)", m: ["Weighted Banded Squat"], r: "25-50" },
+
             4: { t: "UPPER (PULL)", m: ["Pullups (Park)", "Inverted Rows"], r: "AMRAP / 15-25" },
             5: { t: "LOWER (LEGS)", m: ["Weighted Banded Squat"], r: "25-50" }
         };
@@ -112,6 +119,7 @@
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.getElementById('nav-' + v).classList.add('active');
             render();
+
         }
 
         function logSet(n) {
@@ -131,6 +139,7 @@
         function render() {
             const el = document.getElementById('main-view');
             let html = '';
+
             if (view === 'schedule') {
                 const plan = [
                     { t: "07:00 AM", l: "MEDS", d: "Vyvanse + Lexapro", s: "16oz water. No Vit C.", c: "bg-red-500/20 text-red-400" },
@@ -150,6 +159,7 @@
                             <span class="status-badge ${p.c} mb-2 inline-block">${p.l}</span>
                             <h4 class="text-xs font-black text-white italic uppercase">${p.d}</h4>
                             <p class="text-[10px] text-slate-400 font-medium mt-1 italic">${p.s}</p>
+
                         </div>
                     </div>`).join('')}</div>`;
             } else if (view === 'training') {
@@ -169,6 +179,7 @@
                         </div>`).join('')}
                 </div>`;
             } else if (view === 'setup') {
+
                 html = `<div class="space-y-4">
                     <div class="card overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1562419988-0dbd7b2fa545?q=80&w=1000" class="w-full h-32 object-cover opacity-50">
@@ -188,6 +199,7 @@
                                 <h4 class="text-[11px] font-black text-white uppercase">${g.n}</h4>
                                 <p class="text-[9px] text-slate-500 font-bold mt-1 uppercase">${g.p} @ ${g.s}</p>
                             </div>
+
                         </div>`).join('')}
                 </div>`;
             } else if (view === 'safety') {
@@ -207,224 +219,51 @@
         window.onload = () => {
             const days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
             document.getElementById('current-day-label').innerText = days[day] + " MASS PROTOCOL";
+
             document.getElementById('rep-display').innerText = reps;
             navigate('schedule');
         };
     </script>
 </body>
 </html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>70808 ELITE</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Oswald:wght@700&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f1f5f9; -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
-        .oswald { font-family: 'Oswald', sans-serif; }
-        .app-bg { background: radial-gradient(circle at top right, #1e293b 0%, #020617 100%); }
-        .card { background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 1.5rem; }
-        .tab-btn { color: #64748b; transition: all 0.2s ease; }
-        .tab-btn.active { color: #10b981; transform: scale(1.1); }
-        .status-badge { font-size: 0.6rem; font-weight: 900; padding: 0.2rem 0.6rem; border-radius: 9999px; text-transform: uppercase; }
-        .cb-custom { width: 22px; height: 22px; border: 2px solid #10b981; border-radius: 6px; display: flex; align-items: center; justify-content: center; }
-        .cb-custom.checked { background-color: #10b981; }
-        .cb-custom.checked::after { content: '✓'; color: white; font-size: 12px; font-weight: bold; }
-        .checkpoint-dot { width: 10px; height: 10px; border-radius: 50%; background: #10b981; border: 2px solid #020617; box-shadow: 0 0 8px #10b981; }
-        .modal { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.95); backdrop-filter: blur(8px); }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-        .content-area { animation: fadeIn 0.3s ease-out; }
-    </style>
-</head>
-<body class="app-bg min-h-screen pb-32">
-    <header class="p-6 pt-12 text-center border-b border-white/5">
-        <h1 class="oswald text-4xl italic tracking-tighter text-white uppercase">70808 <span class="text-emerald-500">ELITE</span></h1>
-        <p id="current-day-label" class="mt-1 text-[9px] font-black uppercase text-slate-500 tracking-[0.2em]"></p>
-    </header>
 
-    <div class="px-6 py-4 grid grid-cols-2 gap-3">
-        <div class="card p-4 text-center">
-            <p class="text-[8px] font-black text-slate-500 uppercase tracking-widest mb-1">Total Reps</p>
-            <p id="rep-display" class="text-2xl font-black text-white oswald">0</p>
-        </div>
-        <div class="card p-4 text-center">
-            <p class="text-[8px] font-black text-slate-500 uppercase tracking-widest mb-1">Target</p>
-            <p class="text-2xl font-black text-amber-500 oswald">3,200<span class="text-[10px] ml-1">KCAL</span></p>
-        </div>
-    </div>
+70808 Elite: The Master Protocol
+70808 Elite: The Natural Mass Protocol
+Today is Tuesday, March 10, 2026. This plan is optimized for your 5'9", 171 lb frame and your goal of reaching a lean 190 lbs while staying under a $50/week grocery budget.
 
-    <main id="main-view" class="px-6 content-area"></main>
+[Github Pages](https://tutorialsdojo.com/github-pages/)
 
-    <nav class="fixed bottom-0 left-0 right-0 p-5 bg-slate-950/95 backdrop-blur-2xl border-t border-white/5 flex justify-around items-center z-50">
-        <button onclick="navigate('schedule')" id="nav-schedule" class="tab-btn flex flex-col items-center gap-1">
-            <i class="fa-solid fa-clock text-lg"></i>
-            <span class="text-[7px] font-black uppercase">Schedule</span>
-        </button>
-        <button onclick="navigate('training')" id="nav-training" class="tab-btn flex flex-col items-center gap-1">
-            <i class="fa-solid fa-dumbbell text-lg"></i>
-            <span class="text-[7px] font-black uppercase">Train</span>
-        </button>
-        <button onclick="navigate('setup')" id="nav-setup" class="tab-btn flex flex-col items-center gap-1">
-            <i class="fa-solid fa-house-laptop text-lg"></i>
-            <span class="text-[7px] font-black uppercase">Home</span>
-        </button>
-        <button onclick="navigate('groceries')" id="nav-groceries" class="tab-btn flex flex-col items-center gap-1">
-            <i class="fa-solid fa-cart-shopping text-lg"></i>
-            <span class="text-[7px] font-black uppercase">Shop</span>
-        </button>
-        <button onclick="navigate('safety')" id="nav-safety" class="tab-btn flex flex-col items-center gap-1">
-            <i class="fa-solid fa-shield-heart text-lg"></i>
-            <span class="text-[7px] font-black uppercase">Safe</span>
-        </button>
-    </nav>
+The $50 Master Grocery List
+Using current prices from the [Walmart on College Drive](https://www.google.com/search?kgmid=/m/03nzrf7&q=how+do+I+refresh+it+now?), we have optimized your calories for maximum muscle synthesis.
 
-    <div id="guide-modal" class="modal flex items-center justify-center p-6">
-        <div class="bg-slate-900 w-full max-w-sm rounded-[2rem] overflow-hidden border border-white/10">
-            <div class="p-6 bg-emerald-500 flex justify-between items-center">
-                <h3 id="modal-title" class="oswald text-xl text-white uppercase italic">Guide</h3>
-                <button onclick="closeModal()"><i class="fa-solid fa-xmark text-xl text-white"></i></button>
-            </div>
-            <div id="modal-body" class="p-8 text-slate-300 text-xs leading-relaxed whitespace-pre-line italic"></div>
-            <div class="p-6 pt-0"><button onclick="closeModal()" class="w-full py-4 bg-slate-800 rounded-2xl font-black text-white uppercase text-[10px]">GOT IT</button></div>
-        </div>
-    </div>
+Goya Canilla Rice (10lb)Chicken Thighs (5lb)Large White Eggs (18ct)Whole Milk (2 Gal)Old Fashioned OatsTotal Estimate11121$7.28$13.42$2.47$7.60$4.50$50.65WalmartWalmartWalmart[Trader Joe's](https://www.google.com/search?kgmid=/g/1ptw_tnyn&q=how+do+I+refresh+it+now?)Walmart
 
-    <script>
-        let view = 'schedule';
-        let reps = parseInt(localStorage.getItem('70808_elite_reps') || '0');
-        const day = new Date().getDay();
+[Rich media excluded from paste]
+24-Hour Elite Growth Blueprint
+Since your natural muscle protein synthesis (MPS) stays elevated for up to 48 hours, your schedule alternates to prevent overtraining.
 
-        const formVault = {
-            "Pushups (Banded)": "TARGET: 20-30 Reps\n\n1. Wrap THIN BAND around back.\n2. Pin ends under palms.\n3. Keep body straight.\n4. Lower slow, explode up.\n\nCUE: Be a rigid plank.",
-            "Weighted Banded Squat": "TARGET: 25-50 Reps\n\n1. Stand on THICK BAND.\n2. Loop over head to shoulders.\n3. Hug BOTH 10lb weights at chest.\n4. Sit back into a tiny chair.\n\nCUE: Push the floor away.",
-            "Pullups (Park)": "TARGET: AMRAP\n\n1. Hands wide on bar.\n2. Chest to bar.\n3. Lower with control.\n\nCUE: Elbows to back pockets.",
-            "Inverted Rows": "TARGET: 15-25 Reps\n\n1. Lie under waist-high bar.\n2. Pull chest to bar.\n3. Squeeze blades hard.\n\nCUE: Pinch a pencil between blades.",
-            "Banded DB Curls": "TARGET: 20-30 Reps\n\n1. Step on THIN BAND.\n2. Loop over 10lb weights.\n3. Curl and squeeze hard.\n\nCUE: Break the band at the top."
-        };
+[How to Create a Website | Jack F. Murphy | codeburst](https://codeburst.io/how-to-create-and-publish-a-website-a-students-guide-1ffd9fdd6b39)
 
-        const workoutDays = {
-            1: { t: "UPPER (PUSH)", m: ["Pushups (Banded)", "Banded DB Curls"], r: "20-30" },
-            2: { t: "LOWER (MASS)", m: ["Weighted Banded Squat"], r: "25-50" },
-            4: { t: "UPPER (PULL)", m: ["Pullups (Park)", "Inverted Rows"], r: "AMRAP / 15-25" },
-            5: { t: "LOWER (LEGS)", m: ["Weighted Banded Squat"], r: "25-50" }
-        };
+Daily Schedule & Med Timing
 
-        const groceryItems = [
-            { n: "Goya Rice (10lb)", p: "$7.28", s: "Walmart" },
-            { n: "Chicken (5lb)", p: "$13.42", s: "Walmart" },
-            { n: "Eggs (18ct)", p: "$2.47", s: "Walmart" },
-            { n: "Milk (2 Gal)", p: "$7.60", s: "Trader Joe" },
-            { n: "Oats (Large)", p: "$4.50", s: "Walmart" },
-            { n: "Tuna (5 Cans)", p: "$5.50", s: "Walmart" },
-            { n: "Peanut Butter", p: "$4.12", s: "Walmart" }
-        ];
+* 07:00 AM - MEDS: Take Vyvanse/Lexapro with 16oz water. Wait 1 hour before consuming Vitamin C or fruit juice to ensure absorption.
+* 07:30 AM - PROTEIN FRONT-LOAD: Eat 3 eggs and a large bowl of oats. Protein helps your medication work more effectively by supporting neurotransmitter production.
+* 04:30 PM - TRAINING:
+* Mon/Thu (Upper Body): Head to [Milford Wampold Park](https://www.google.com/search?kgmid=/g/1tjpqw5p&q=how+do+I+refresh+it+now?) for pullups or do banded pushups at home.
+   * Tue/Fri (Lower Body): Perform Weighted Banded Squats at home using your 10lb weights and thick band.
+   * Wed/Sun (Recovery): Walk the 4-mile University Lake Loop to flush metabolic waste.
 
-        function navigate(v) {
-            view = v;
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('nav-' + v).classList.add('active');
-            render();
-        }
+[Rich media excluded from paste]
+Zero-Experience Form Vault
+Since you are training without a coach, use these cues to ensure you are hitting the right muscles.
 
-        function logSet(n) {
-            reps += n;
-            localStorage.setItem('70808_elite_reps', reps);
-            document.getElementById('rep-display').innerText = reps;
-        }
+* Squats (Home): Stand on your thick band and loop it over your shoulders. Hold your 10lb weights at your chest. Mental Cue: Imagine sitting back into a tiny chair. Keep your chest up.
+* Pushups (Banded): Wrap the thin band around your back. Mental Cue: Be a rigid plank of wood. Don't let your hips sag.
+* Pullups (Park): Mental Cue: Drive your elbows into your back pockets. Imagine pulling the bar down to your chest, not pulling yourself up to the bar.
+* Inverted Rows: Mental Cue: Pinch a pencil between your shoulder blades at the top of the move.
 
-        function showForm(ex) {
-            document.getElementById('modal-title').innerText = ex;
-            document.getElementById('modal-body').innerText = formVault[ex];
-            document.getElementById('guide-modal').style.display = 'flex';
-        }
 
-        function closeModal() { document.getElementById('guide-modal').style.display = 'none'; }
+- 
+- 
 
-        function render() {
-            const el = document.getElementById('main-view');
-            let html = '';
-            if (view === 'schedule') {
-                const plan = [
-                    { t: "07:00 AM", l: "MEDS", d: "Vyvanse + Lexapro", s: "16oz water. No Vit C.", c: "bg-red-500/20 text-red-400" },
-                    { t: "07:30 AM", l: "EAT", d: "3 Eggs + Oats + Milk", s: "Elysium Basis now.", c: "bg-amber-500/20 text-amber-400" },
-                    { t: "10:30 AM", l: "DRINK", d: "Mass Gainer Shake", s: "Milk, Oats, PB, Aminos.", c: "bg-blue-500/20 text-blue-400" },
-                    { t: "01:30 PM", l: "EAT", d: "Tuna & White Rice", s: "Pre-workout carbs.", c: "bg-amber-500/20 text-amber-400" },
-                    { t: "04:30 PM", l: "DO", d: "TRAIN SESSION", s: "Home or Wampold Park.", c: "bg-emerald-500/20 text-emerald-400" },
-                    { t: "06:00 PM", l: "DRINK", d: "Creatine + Aminos", s: "Post-workout repair.", c: "bg-blue-500/20 text-blue-400" },
-                    { t: "08:00 PM", l: "EAT", d: "Chicken & Potato", s: "Recovery Dinner.", c: "bg-amber-500/20 text-amber-400" },
-                    { t: "10:00 PM", l: "SLEEP", d: "Night Recovery", s: "Mag, Zinc, Fish Oil.", c: "bg-slate-500/20 text-slate-400" }
-                ];
-                html = `<div class="relative pl-7 border-l border-white/5">${plan.map(p => `
-                    <div class="relative mb-8">
-                        <div class="checkpoint-dot absolute -left-[33px] top-1"></div>
-                        <p class="text-[8px] font-black text-slate-500 mb-2 uppercase">${p.t}</p>
-                        <div class="card p-4">
-                            <span class="status-badge ${p.c} mb-2 inline-block">${p.l}</span>
-                            <h4 class="text-xs font-black text-white italic uppercase">${p.d}</h4>
-                            <p class="text-[10px] text-slate-400 font-medium mt-1 italic">${p.s}</p>
-                        </div>
-                    </div>`).join('')}</div>`;
-            } else if (view === 'training') {
-                const session = workoutDays[day] || { t: "RECOVERY", m: ["4-Mile Lake Walk"], r: "30-60 Mins" };
-                html = `<div class="card p-6 border-emerald-500/20 mb-6 text-center">
-                    <h2 class="oswald text-2xl italic uppercase text-white">${session.t}</h2>
-                    <p class="text-[9px] text-amber-500 font-bold mt-1 uppercase">GOAL: ${session.r} REPS</p>
-                </div>
-                <div class="space-y-4">
-                    ${session.m.map(m => `
-                        <div class="card p-4 flex justify-between items-center">
-                            <div>
-                                <h4 class="text-xs font-black uppercase italic text-white">${m}</h4>
-                                <button onclick="showForm('${m}')" class="text-[9px] text-emerald-500 font-bold uppercase mt-1">How?</button>
-                            </div>
-                            <button onclick="logSet(10)" class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-4 py-3 rounded-xl text-[9px] font-black uppercase">+10</button>
-                        </div>`).join('')}
-                </div>`;
-            } else if (view === 'setup') {
-                html = `<div class="space-y-4">
-                    <div class="card overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1562419988-0dbd7b2fa545?q=80&w=1000" class="w-full h-32 object-cover opacity-50">
-                        <div class="p-5"><h4 class="oswald text-sm text-emerald-500 uppercase">Banded Curls</h4><p class="text-[10px] text-slate-400 mt-1 italic">Step on thin band. Loop over 10lb weights.</p></div>
-                    </div>
-                    <div class="card overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1666979290238-2d862b573345?q=80&w=1000" class="w-full h-32 object-cover opacity-50">
-                        <div class="p-5"><h4 class="oswald text-sm text-emerald-500 uppercase">Banded Squat</h4><p class="text-[10px] text-slate-400 mt-1 italic">Stand on thick band. Loop over shoulders.</p></div>
-                    </div>
-                </div>`;
-            } else if (view === 'groceries') {
-                html = `<div class="space-y-3">
-                    ${groceryItems.map(g => `
-                        <div class="card p-4 flex items-center gap-4">
-                            <div class="cb-custom" onclick="this.classList.toggle('checked')"></div>
-                            <div class="flex-1">
-                                <h4 class="text-[11px] font-black text-white uppercase">${g.n}</h4>
-                                <p class="text-[9px] text-slate-500 font-bold mt-1 uppercase">${g.p} @ ${g.s}</p>
-                            </div>
-                        </div>`).join('')}
-                </div>`;
-            } else if (view === 'safety') {
-                html = `<div class="space-y-4">
-                    <div class="card p-5 border-red-500/20 text-[10px] italic leading-relaxed text-slate-300">
-                        <h3 class="text-red-500 font-black uppercase text-[9px] mb-2 tracking-widest">Alcohol</h3>
-                        Vyvanse masks alcohol. Heart rate can spike dangerously. Don't drink while training.
-                    </div>
-                    <div class="card p-5 border-amber-500/20 text-[10px] italic leading-relaxed text-slate-300">
-                        <h3 class="text-amber-500 font-black uppercase text-[9px] mb-2 tracking-widest">Acidity</h3>
-                        No Vit C or juice 1 hour before/after meds. It flushes the Vyvanse out early.
-                    </div>
-                </div>`;
-            }
-            el.innerHTML = html;
-        }
-        window.onload = () => {
-            const days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
-            document.getElementById('current-day-label').innerText = days[day] + " MASS PROTOCOL";
-            document.getElementById('rep-display').innerText = reps;
-            navigate('schedule');
-        };
-    </script>
-</body>
-</html>
+
