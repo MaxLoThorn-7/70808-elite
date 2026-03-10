@@ -3,41 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>70808 ELITE: COACH MODE</title>
+    <title>70808 ELITE: COMMAND</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="app-card">
         <header>
             <h1>70808 <span class="neon">ELITE</span></h1>
-            <div id="clock" class="digital-clock">00:00:00</div>
+            <div id="clock">00:00:00</div>
         </header>
 
-        <section class="card coach-window">
-            <h3 class="neon">🎯 CURRENT MISSION</h3>
-            <div id="mission-title" style="font-size: 1.2rem; font-weight: bold; margin-bottom: 5px;">Initializing...</div>
-            <p id="mission-desc" style="color: #aaa; font-size: 0.9rem; margin-bottom: 15px;">Awaiting command...</p>
-            <div id="exercise-guide" class="guide-box" style="display:none;">
-                <small>EQUIPMENT: 10LB + BANDS</small>
-                <div id="movement-steps" style="color: var(--neon); margin-top: 5px; font-style: italic;"></div>
+        <div class="card mission-box">
+            <h3 class="label">CURRENT MISSION</h3>
+            <div id="mission-title">Loading...</div>
+            <p id="mission-desc"></p>
+        </div>
+
+        <div class="card workout-box">
+            <button id="start-workout-btn" onclick="toggleWorkout()">⚡ START TODAY'S WORKOUT</button>
+            <div id="routine-steps" style="display:none; margin-top:15px;">
+                <h3 class="neon">THE 10LB HYPERTROPHY CIRCUIT</h3>
+                <div id="current-exercise-display">
+                    <h2 id="ex-title">Step 1: Band Pushups</h2>
+                    <p id="ex-instructions">Loop band over back. 30 slow reps.</p>
+                </div>
+                <div class="timer-display" id="timer">0s</div>
+                <div class="row">
+                    <button onclick="startTimer()" class="btn-green">START SET</button>
+                    <button onclick="nextExercise()" class="btn-blue">NEXT MOVE</button>
+                </div>
             </div>
-        </section>
+        </div>
 
-        <section class="card timer-box">
-            <h3 id="timer-label">⏱️ SET TIMER (TARGET: 45s)</h3>
-            <div id="timer-display">0s</div>
-            <div class="row">
-                <button onclick="startTension()" class="btn-start">START SET</button>
-                <button onclick="stopTension()" class="btn-pause">PAUSE</button>
-            </div>
-        </section>
+        <div class="card">
+            <label for="photo-input" class="photo-label">📸 SNAP PROGRESS PHOTO</label>
+            <input type="file" id="photo-input" accept="image/*" style="display:none">
+        </div>
 
-        <section class="card log-inputs">
-            <input type="text" id="entry-name" placeholder="Confirm Action (e.g. 40 Squats)">
-            <button id="master-add" class="btn-commit">COMMIT TO GROWTH</button>
-        </section>
-
-        <ul id="activity-log"></ul>
+        <ul id="history-log"></ul>
     </div>
     <script src="script.js"></script>
 </body>
