@@ -262,6 +262,47 @@ Since you are training without a coach, use these cues to ensure you are hitting
 * Pullups (Park): Mental Cue: Drive your elbows into your back pockets. Imagine pulling the bar down to your chest, not pulling yourself up to the bar.
 * Inverted Rows: Mental Cue: Pinch a pencil between your shoulder blades at the top of the move.
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>70808 ELITE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-card">
+        <header>
+            <h1>70808 <span class="highlight">ELITE</span></h1>
+            <p id="date-display"></p>
+        </header>
+
+        <div class="stats-row">
+            <div class="stat-box">
+                <span id="total-movements">0</span>
+                <label>Exercises</label>
+            </div>
+            <div class="progress-container">
+                <div id="progress-bar"></div>
+            </div>
+        </div>
+
+        <div class="input-section">
+            <input type="text" id="ex-name" placeholder="Exercise Name">
+            <div class="split-input">
+                <input type="number" id="ex-sets" placeholder="Sets">
+                <input type="number" id="ex-reps" placeholder="Reps">
+            </div>
+            <button id="add-btn">LOG MOVEMENT</button>
+        </div>
+
+        <ul id="log-container"></ul>
+        
+        <button id="clear-all" class="secondary-btn">CLEAR SESSION</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
 
 - 
 - 
