@@ -1,40 +1,63 @@
-const protocol = [
-    {h: 0, t: "SLEEP", d: "Deep recovery mode. Muscle tissue is currently being repaired.", g: ""},
-    {h: 7, t: "ANABOLIC BREAKFAST", d: "Eat 4 Eggs + 1 Cup Oats. High Leucine to stop catabolism.", g: "Protein: 30g | Carbs: 50g"},
-    {h: 10, t: "NITROGEN SPIKE", d: "Drink 1 Shake or 1 cup Greek Yogurt. Keep muscles fed.", g: "Keep hydration high (20oz water)."},
-    {h: 13, t: "THE FOUNDATION MEAL", d: "Eat 6oz Beef + 2 Cups White Rice. Clean fuel for the pump.", g: "Sodium is key for the pump later."},
-    {h: 16, t: "TRAINING: HIGH TENSION", d: "Current Exercise: BAND-RESISTED PUSHUPS", g: "Loop band over back. Slow descent. Squeeze at top."},
-    {h: 17, t: "TRAINING: HYPERTROPHY", d: "Current Exercise: 10LB GOBLET SQUATS", g: "Hold both weights at chest. 40 reps minimum. No rest."},
-    {h: 18, t: "POST-WORKOUT RECOVERY", d: "1 Banana + Protein Shake. Drive insulin to the muscles.", g: "Fast carbs = Instant recovery."},
-    {h: 20, t: "REPAIR MEAL", d: "6oz Chicken + 1 Large Potato. Slow burning fuel for sleep.", g: "Magnesium/Zinc now if you have it."},
-    {h: 22, t: "BLACKOUT", d: "No phone. No lights. Growth Hormone release starts now.", g: "Sleep = Steroids. Don't skip it."}
+// THE 10LB + BAND ROUTINE
+const exercises = [
+    {n: "Band-Resisted Pushups", d: "Loop band around back/palms. Slow down, explosive up. Max reps."},
+    {n: "10lb Goblet Squats", d: "Hold both 10lb weights at chest. 40 reps. Don't lock knees."},
+    {n: "Seated Band Rows", d: "Loop band around feet. Pull to stomach. Squeeze back for 2 seconds."},
+    {n: "10lb Lateral Raises", d: "Weights at sides. Lift to shoulder height. Slow 3-sec descent."},
+    {n: "Overhead Band Extension", d: "Step on band, pull over head. Squeeze triceps at top."}
 ];
 
-function updateCoach() {
-    const now = new Date();
-    const hour = now.getHours();
-    document.getElementById('clock').innerText = now.toLocaleTimeString();
+let currentEx = 0;
+let seconds = 0;
+let interval;
 
-    // Find the current protocol phase
-    const phase = protocol.reverse().find(p => hour >= p.h) || protocol[0];
-    protocol.reverse(); // Reset array order
+function toggleWorkout() {
+    const box = document.getElementById('routine-steps');
+    box.style.display = box.style.display === 'none' ? 'block' : 'none';
+}
 
-    document.getElementById('mission-title').innerText = phase.t;
-    document.getElementById('mission-desc').innerText = phase.d;
-    
-    if(phase.g) {
-        document.getElementById('exercise-guide').style.display = "block";
-        document.getElementById('movement-steps').innerText = phase.g;
+function startTimer() {
+    clearInterval(interval);
+    seconds = 0;
+    interval = setInterval(() => {
+        seconds++;
+        document.getElementById('timer').innerText = seconds + "s";
+    }, 1000);
+}
+
+function nextExercise() {
+    clearInterval(interval);
+    const log = document.getElementById('history-log');
+    const li = document.createElement('li');
+    li.innerText = `COMPLETED: ${exercises[currentEx].n} (${seconds}s tension)`;
+    log.prepend(li);
+
+    currentEx++;
+    if(currentEx >= exercises.length) {
+        alert("WORKOUT COMPLETE. GROWTH TRIGGERED.");
+        currentEx = 0;
+        toggleWorkout();
     } else {
-        document.getElementById('exercise-guide').style.display = "none";
+        document.getElementById('ex-title').innerText = `Step ${currentEx + 1}: ${exercises[currentEx].n}`;
+        document.getElementById('ex-instructions').innerText = exercises[currentEx].d;
+        document.getElementById('timer').innerText = "0s";
     }
 }
 
-// Timer Logic
-let timerInterval;
-let seconds = 0;
-function startTension() {
-    clearInterval(timerInterval);
+// THE DAILY CLOCK
+function clock() {
+    const h = new Date().getHours();
+    document.getElementById('clock').innerText = new Date().toLocaleTimeString();
+    
+    const mission = document.getElementById('mission-title');
+    const desc = document.getElementById('mission-desc');
+
+    if (h < 9) { mission.innerText = "ANABOLIC BREAKFAST"; desc.innerText = "4 Eggs + Oats. Fuel up."; }
+    else if (h < 13) { mission.innerText = "PREP FOUNDATION MEAL"; desc.innerText = "6oz Beef + 2 Cups Rice."; }
+    else if (h < 18) { mission.innerText = "HYPERTROPHY WINDOW"; desc.innerText = "Time to use the bands/10lbs."; }
+    else { mission.innerText = "RECOVERY PHASE"; desc.innerText = "Steak + Potato + 8hrs Sleep."; }
+}
+setInterval(clock, 1000);    clearInterval(timerInterval);
     seconds = 0;
     document.getElementById('timer-display').style.color = "#00ff88";
     timerInterval = setInterval(() => {
