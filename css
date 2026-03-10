@@ -1,40 +1,14 @@
-:root {
-    --primary: #00ff88;
-    --danger: #ff4444;
-    --bg: #0a0a0a;
-    --card: #151515;
-}
-
-body {
-    background-color: var(--bg);
-    color: #fff;
-    font-family: 'Inter', system-ui, sans-serif;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-}
-
-.app-card {
-    background: var(--card);
-    width: 100%;
-    max-width: 400px;
-    padding: 2rem;
-    border-radius: 24px;
-    border: 1px solid #333;
-}
-
-.highlight { color: var(--primary); text-shadow: 0 0 10px rgba(0,255,136,0.3); }
-
-.stats-row { margin: 20px 0; display: flex; align-items: center; gap: 15px; }
-
-.stat-box { text-align: center; background: #222; padding: 10px; border-radius: 12px; min-width: 80px; }
-.stat-box span { display: block; font-size: 1.5rem; font-weight: bold; color: var(--primary); }
-
-.progress-container { flex-grow: 1; background: #333; height: 12px; border-radius: 6px; overflow: hidden; }
-#progress-bar { background: var(--primary); width: 0%; height: 100%; transition: 0.5s ease; }
-
-input {
-    width: 100%; padding: 15px; margin-bottom: 10px;
+:root { --neon: #00ff88; --bg: #050505; }
+body { background: var(--bg); color: #fff; font-family: sans-serif; padding: 15px; }
+.card { background: #111; padding: 15px; border-radius: 15px; margin-bottom: 10px; border: 1px solid #222; }
+.neon { color: var(--neon); }
+button { width: 100%; padding: 15px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; margin-bottom: 5px; }
+#start-workout-btn { background: var(--neon); color: #000; font-size: 1.1rem; }
+.timer-display { font-size: 3rem; text-align: center; margin: 10px 0; color: var(--neon); }
+.btn-green { background: #111; color: var(--neon); border: 1px solid var(--neon); }
+.btn-blue { background: #0077ff; color: #fff; }
+.photo-label { display: block; text-align: center; color: #888; border: 1px dashed #444; padding: 10px; border-radius: 10px; }
+li { background: #222; padding: 10px; border-radius: 5px; margin-top: 5px; font-size: 0.8rem; border-left: 3px solid var(--neon); }    width: 100%; padding: 15px; margin-bottom: 10px;
     background: #222; border: 1px solid #444; border-radius: 12px;
     color: white; box-sizing: border-box; font-size: 1rem;
 }
