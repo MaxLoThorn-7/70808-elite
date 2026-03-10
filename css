@@ -1,0 +1,65 @@
+:root {
+    --primary: #00ff88;
+    --danger: #ff4444;
+    --bg: #0a0a0a;
+    --card: #151515;
+}
+
+body {
+    background-color: var(--bg);
+    color: #fff;
+    font-family: 'Inter', system-ui, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.app-card {
+    background: var(--card);
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    border-radius: 24px;
+    border: 1px solid #333;
+}
+
+.highlight { color: var(--primary); text-shadow: 0 0 10px rgba(0,255,136,0.3); }
+
+.stats-row { margin: 20px 0; display: flex; align-items: center; gap: 15px; }
+
+.stat-box { text-align: center; background: #222; padding: 10px; border-radius: 12px; min-width: 80px; }
+.stat-box span { display: block; font-size: 1.5rem; font-weight: bold; color: var(--primary); }
+
+.progress-container { flex-grow: 1; background: #333; height: 12px; border-radius: 6px; overflow: hidden; }
+#progress-bar { background: var(--primary); width: 0%; height: 100%; transition: 0.5s ease; }
+
+input {
+    width: 100%; padding: 15px; margin-bottom: 10px;
+    background: #222; border: 1px solid #444; border-radius: 12px;
+    color: white; box-sizing: border-box; font-size: 1rem;
+}
+
+.split-input { display: flex; gap: 10px; }
+
+button {
+    width: 100%; padding: 16px; background: var(--primary);
+    border: none; border-radius: 12px; font-weight: 900;
+    cursor: pointer; transition: 0.2s;
+}
+
+button:active { transform: scale(0.96); }
+
+.secondary-btn { background: transparent; color: var(--danger); margin-top: 20px; border: 1px solid var(--danger); }
+
+ul { list-style: none; padding: 0; margin-top: 25px; }
+
+li {
+    background: #1d1d1d; padding: 15px; border-radius: 15px;
+    margin-bottom: 12px; display: flex; justify-content: space-between;
+    align-items: center; border-left: 4px solid var(--primary);
+}
+
+.delete-btn {
+    background: #333; color: #ff4444; padding: 5px 10px;
+    border-radius: 8px; font-size: 0.8rem; width: auto;
+}
